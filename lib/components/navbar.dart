@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:provider/provider.dart';
+import 'package:website/dimensions/dimension.dart';
 
 const String svgString = '''
 <svg width="53" height="52" viewBox="0 0 53 52" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -14,31 +15,104 @@ const String svgString = '''
 </svg>
 ''';
 
-class Navbar extends StatelessWidget {
-  const Navbar({super.key});
+class Navbar extends StatefulWidget implements PreferredSizeWidget {
+  final double customHeight;
+  String state;
+
+  Navbar({super.key, this.customHeight = 200, this.state = "home"});
 
   @override
+  State<Navbar> createState() => _NavbarState();
+
+    @override
+  Size get preferredSize => Size.fromHeight(customHeight);
+}
+
+
+class _NavbarState extends State<Navbar> {
+
+
+  void _changeStateNavbar(state) {
+    setState(() {
+      widget.state = state; 
+    });
+  }
+  @override
   Widget build(BuildContext context) {
+    final dimensions = Provider.of<Dimensions>(context);
     return Container(
-      width: MediaQuery.of(context).size.width,
+      height: widget.customHeight,
+      width: dimensions.getWidth(1600),
+      padding: EdgeInsets.symmetric(vertical: dimensions.getHeight(23), horizontal: dimensions.getWidth(188)),
+      color: Color.fromRGBO(11, 10, 10, 1),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-         
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SvgPicture.string(
-                  svgString,
-                  width: 52,
-                  height: 52,
+          Row(
+            children: [
+              SvgPicture.string(
+                svgString,
+                width: dimensions.getWidth(52),
+                height: dimensions.getHeight(52),
+              ),
+              SizedBox(width: 10),
+              Text(
+                "Origo Inc.",
+                style: GoogleFonts.inter(
+                  textStyle: TextStyle(
+                    color: Color.fromRGBO(250, 250, 250, 1),
+                  ),
+                  fontSize: dimensions.getWidth(24),
+                  fontWeight: FontWeight.w700,
                 ),
-                Text("Origo Inc.")
+              ),
+            ],
+          ),
+          Container(
+            child: Row(
+              children: [
+                TextButton(onPressed: () => _changeStateNavbar("home"), child: Text("Home", style: GoogleFonts.inter(
+                  textStyle: TextStyle(
+                    color: (widget.state == "home") ? Color.fromRGBO(245 , 118, 0, 1): Color.fromRGBO(193 , 210, 230, 1),
+                  ),
+                  fontSize: dimensions.getWidth(16),
+                  fontWeight: (widget.state == "home") ? FontWeight.w700: FontWeight.w400,
+                )  ,)),
+                 TextButton(onPressed: () => _changeStateNavbar("about"), child: Text("About us", style: GoogleFonts.inter(
+                  textStyle: TextStyle(
+                    color: (widget.state == "about") ? Color.fromRGBO(245 , 118, 0, 1): Color.fromRGBO(193 , 210, 230, 1),
+                  ),
+                  fontSize: dimensions.getWidth(16),
+                  fontWeight: (widget.state == "about") ? FontWeight.w700: FontWeight.w400,
+                )  ,)),
+                 TextButton(onPressed: () => _changeStateNavbar("marketing"), child: Text("Marketing", style: GoogleFonts.inter(
+                  textStyle: TextStyle(
+                    color: (widget.state == "marketing") ? Color.fromRGBO(245 , 118, 0, 1): Color.fromRGBO(193 , 210, 230, 1),
+                  ),
+                  fontSize: dimensions.getWidth(16),
+                  fontWeight: (widget.state == "marketing") ? FontWeight.w700: FontWeight.w400,
+                )  ,)),
+                 TextButton(onPressed: () => _changeStateNavbar("consulting"), child: Text("Consulting", style: GoogleFonts.inter(
+                  textStyle: TextStyle(
+                    color: (widget.state == "consulting") ? Color.fromRGBO(245 , 118, 0, 1): Color.fromRGBO(193 , 210, 230, 1),
+                  ),
+                  fontSize: dimensions.getWidth(16),
+                  fontWeight: (widget.state == "consulting") ? FontWeight.w700: FontWeight.w400,
+                )  ,)),
+                 TextButton(onPressed: () => _changeStateNavbar("portfolio"), child: Text("Portfolio", style: GoogleFonts.inter(
+                  textStyle: TextStyle(
+                    color: (widget.state == "portfolio") ? Color.fromRGBO(245 , 118, 0, 1): Color.fromRGBO(193 , 210, 230, 1),
+                  ),
+                  fontSize: dimensions.getWidth(16),
+                  fontWeight: (widget.state == "portfolio") ? FontWeight.w700: FontWeight.w400,
+                )  ,))
               ],
             ),
-          
+          )
         ],
       ),
     );
   }
+
+
 }

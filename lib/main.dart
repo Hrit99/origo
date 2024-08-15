@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:website/components/navbar.dart';
+import 'package:website/dimensions/dimension.dart';
+import 'package:website/screens/homeScreen/homeScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,7 +14,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -32,12 +37,18 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color.fromRGBO(11, 10, 10, 1),
-        title: Navbar(),
+         final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+    return MultiProvider(
+       providers: [
+        ChangeNotifierProvider(
+          create: (context) => Dimensions(screenHeight: screenHeight, screenWidth: screenWidth),
+        ),
+      ],
+      child: Scaffold(
+        appBar: Navbar(state: "home", customHeight: Dimensions(screenHeight: screenHeight, screenWidth: screenWidth).getHeight(98),),
+        body: HomeScreen(),
       ),
-      body: Container(),
     );
   }
 }
