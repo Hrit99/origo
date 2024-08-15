@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:website/components/borderButton.dart';
 import 'package:website/dimensions/dimension.dart';
 
 const String svgString = '''
@@ -108,7 +109,8 @@ class _NavbarState extends State<Navbar> {
                 )  ,))
               ],
             ),
-          )
+          ),
+          Borderbutton(height: dimensions.getHeight(58), width: dimensions.getWidth(149), action: () => {}, backgroundColor: Color.fromRGBO(11, 10, 10, 1), borderColor: Color.fromRGBO(245, 118, 0, 1), text: "Contact", textColor: Color.fromRGBO(250, 250, 250, 1))
         ],
       ),
     );

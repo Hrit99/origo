@@ -4,6 +4,7 @@ import 'package:website/components/navbar.dart';
 import 'package:website/dimensions/dimension.dart';
 import 'package:website/screens/homeScreen/homeScreen.dart';
 
+
 void main() {
   runApp(const MyApp());
 }
@@ -47,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ],
       child: Scaffold(
         appBar: Navbar(state: "home", customHeight: Dimensions(screenHeight: screenHeight, screenWidth: screenWidth).getHeight(98),),
-        body: HomeScreen(),
+    body: HomeScreen(),
       ),
     );
   }

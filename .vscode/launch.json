@@ -8,6 +8,16 @@
             "name": "Dart & Flutter",
             "request": "launch",
             "type": "dart"
+        },
+        {
+            "name": "Web Renderer",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+              "--web-renderer",
+              "auto"
+            ],
+            "program": "lib/main.dart" // specify the main entry point of your app
         }
     ]
 }
