@@ -9,7 +9,7 @@ class Portfoliocontent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     final dimensions = Provider.of<Dimensions>(context);
+     final dimensions = Provider.of<Dimensions>(context,  listen: false);
     return Container(
       child: CarouselSlider(items: [
       
@@ -46,7 +46,7 @@ class Portfoliocontent extends StatelessWidget {
         autoPlayAnimationDuration: Duration(milliseconds: 800),
         autoPlayCurve: Curves.fastOutSlowIn,
         enlargeCenterPage: true,
-        enlargeFactor: 0.3,
+        enlargeFactor: 0.0,
         scrollDirection: Axis.horizontal,
          )),
     );

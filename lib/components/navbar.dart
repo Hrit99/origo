@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:website/components/borderButton.dart';
 import 'package:website/dimensions/dimension.dart';
+import 'package:website/main.dart';
 
 const String svgString = '''
 <svg width="53" height="52" viewBox="0 0 53 52" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -40,11 +41,11 @@ class _NavbarState extends State<Navbar> {
   }
   @override
   Widget build(BuildContext context) {
-    final dimensions = Provider.of<Dimensions>(context);
+    final dimensions = Provider.of<Dimensions>(context,  listen: false);
     return Container(
       height: widget.customHeight,
-      width: dimensions.getWidth(1600),
-      padding: EdgeInsets.symmetric(vertical: dimensions.getHeight(23), horizontal: dimensions.getWidth(188)),
+      width: isMobile? dimensions.getWidth(375): dimensions.getWidth(1600),
+      padding: EdgeInsets.symmetric(vertical: dimensions.getHeight(isMobile? 20:23), horizontal: dimensions.getWidth(isMobile?23:188)),
       color: Color.fromRGBO(11, 10, 10, 1),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -53,8 +54,8 @@ class _NavbarState extends State<Navbar> {
             children: [
               SvgPicture.string(
                 svgString,
-                width: dimensions.getWidth(52),
-                height: dimensions.getHeight(52),
+                width: dimensions.getWidth(isMobile?32:52),
+                height: dimensions.getHeight(isMobile?32:52),
               ),
               SizedBox(width: 10),
               Text(
@@ -63,13 +64,13 @@ class _NavbarState extends State<Navbar> {
                   textStyle: TextStyle(
                     color: Color.fromRGBO(250, 250, 250, 1),
                   ),
-                  fontSize: dimensions.getWidth(24),
+                  fontSize: dimensions.getWidth(isMobile?18:24),
                   fontWeight: FontWeight.w700,
                 ),
               ),
             ],
           ),
-          Container(
+          isMobile?Container():Container(
             child: Row(
               children: [
                 TextButton(onPressed: () => _changeStateNavbar("home"), child: Text("Home", style: GoogleFonts.inter(
@@ -110,7 +111,7 @@ class _NavbarState extends State<Navbar> {
               ],
             ),
           ),
-          Borderbutton(height: dimensions.getHeight(58), width: dimensions.getWidth(149), action: () => {}, backgroundColor: Color.fromRGBO(11, 10, 10, 1), borderColor: Color.fromRGBO(245, 118, 0, 1), text: "Contact", textColor: Color.fromRGBO(250, 250, 250, 1))
+         isMobile?Container(): Borderbutton(height: dimensions.getHeight(58), width: dimensions.getWidth(149), action: () => {}, backgroundColor: Color.fromRGBO(11, 10, 10, 1), borderColor: Color.fromRGBO(245, 118, 0, 1), text: "Contact", textColor: Color.fromRGBO(250, 250, 250, 1))
         ],
       ),
     );

@@ -1,48 +1,16 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:website/components/serviceCardTile.dart';
 import 'package:website/components/servicesHeadingTile.dart';
 import 'package:stacked_card_carousel/stacked_card_carousel.dart';
 import 'package:website/dimensions/dimension.dart';
+import 'package:website/main.dart';
 
 class Servicescontent extends StatelessWidget {
-  const Servicescontent({super.key});
+  Servicescontent({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    final dimensions = Provider.of<Dimensions>(context);
-
-    return Container(
-      height: dimensions.getHeight(700),
-      child: StackedCardCarousel(
-          spaceBetweenItems: dimensions.getHeight(700),
-          items: [
-            Container(
-              color: Color.fromRGBO(11, 10, 10, 1),
-              child: Column(
-                children: [
-                  Servicesheadingtile(
-                    number: "01",
-                    title: "Marketing Services_",
-                    svg:
-                        '''<svg width="49" height="48" viewBox="0 0 49 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g clip-path="url(#clip0_528_5751)">
-      <path d="M24.5 23.9062C30.7132 23.9062 35.75 18.8695 35.75 12.6562C35.75 6.44305 30.7132 1.40625 24.5 1.40625C18.2868 1.40625 13.25 6.44305 13.25 12.6562C13.25 18.8695 18.2868 23.9062 24.5 23.9062Z" stroke="#0B0A0A" stroke-width="2.8125" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M24.5 46.5938C30.7132 46.5938 35.75 41.557 35.75 35.3438C35.75 29.1305 30.7132 24.0938 24.5 24.0938C18.2868 24.0938 13.25 29.1305 13.25 35.3438C13.25 41.557 18.2868 46.5938 24.5 46.5938Z" stroke="#0B0A0A" stroke-width="2.8125" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M13.1562 35.25C19.3695 35.25 24.4062 30.2132 24.4062 24C24.4062 17.7868 19.3695 12.75 13.1562 12.75C6.94305 12.75 1.90625 17.7868 1.90625 24C1.90625 30.2132 6.94305 35.25 13.1562 35.25Z" stroke="#0B0A0A" stroke-width="2.8125" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M35.8438 35.25C42.057 35.25 47.0938 30.2132 47.0938 24C47.0938 17.7868 42.057 12.75 35.8438 12.75C29.6305 12.75 24.5938 17.7868 24.5938 24C24.5938 30.2132 29.6305 35.25 35.8438 35.25Z" stroke="#0B0A0A" stroke-width="2.8125" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M47.0938 9.84375V1.40625H38.6562L47.0938 9.84375ZM38.6562 46.5938H47.0938V38.1562L38.6562 46.5938ZM1.90625 9.84375L10.3438 1.40625H1.90625V9.84375ZM1.90625 46.5938H10.3438L1.90625 38.1562V46.5938Z" stroke="#0B0A0A" stroke-width="2.8125" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-        </g>
-        <defs>
-      <clipPath id="clip0_528_5751">
-        <rect width="48" height="48" fill="white" transform="translate(0.5)"/>
-      </clipPath>
-        </defs>
-      </svg>''',
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+  final List<Widget> service1Cards = [
                       Servicecardtile(
                         heading: "01",
                         svg:
@@ -84,7 +52,57 @@ class Servicescontent extends StatelessWidget {
                         description:
                             "Pick a plan and load up as many requests as you would like.",
                       ),
-                    ],
+                    ];
+
+  @override
+  Widget build(BuildContext context) {
+    final dimensions = Provider.of<Dimensions>(context,  listen: false);
+
+    return Container(
+      height: dimensions.getHeight(700),
+      child: StackedCardCarousel(
+          spaceBetweenItems: dimensions.getHeight(700),
+          items: [
+            Container(
+              color: Color.fromRGBO(11, 10, 10, 1),
+              child: Column(
+                children: [
+                  Servicesheadingtile(
+                    number: "01",
+                    title: "Marketing Services_",
+                    svg:
+                        '''<svg width="49" height="48" viewBox="0 0 49 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clip-path="url(#clip0_528_5751)">
+      <path d="M24.5 23.9062C30.7132 23.9062 35.75 18.8695 35.75 12.6562C35.75 6.44305 30.7132 1.40625 24.5 1.40625C18.2868 1.40625 13.25 6.44305 13.25 12.6562C13.25 18.8695 18.2868 23.9062 24.5 23.9062Z" stroke="#0B0A0A" stroke-width="2.8125" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M24.5 46.5938C30.7132 46.5938 35.75 41.557 35.75 35.3438C35.75 29.1305 30.7132 24.0938 24.5 24.0938C18.2868 24.0938 13.25 29.1305 13.25 35.3438C13.25 41.557 18.2868 46.5938 24.5 46.5938Z" stroke="#0B0A0A" stroke-width="2.8125" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M13.1562 35.25C19.3695 35.25 24.4062 30.2132 24.4062 24C24.4062 17.7868 19.3695 12.75 13.1562 12.75C6.94305 12.75 1.90625 17.7868 1.90625 24C1.90625 30.2132 6.94305 35.25 13.1562 35.25Z" stroke="#0B0A0A" stroke-width="2.8125" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M35.8438 35.25C42.057 35.25 47.0938 30.2132 47.0938 24C47.0938 17.7868 42.057 12.75 35.8438 12.75C29.6305 12.75 24.5938 17.7868 24.5938 24C24.5938 30.2132 29.6305 35.25 35.8438 35.25Z" stroke="#0B0A0A" stroke-width="2.8125" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M47.0938 9.84375V1.40625H38.6562L47.0938 9.84375ZM38.6562 46.5938H47.0938V38.1562L38.6562 46.5938ZM1.90625 9.84375L10.3438 1.40625H1.90625V9.84375ZM1.90625 46.5938H10.3438L1.90625 38.1562V46.5938Z" stroke="#0B0A0A" stroke-width="2.8125" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <defs>
+      <clipPath id="clip0_528_5751">
+        <rect width="48" height="48" fill="white" transform="translate(0.5)"/>
+      </clipPath>
+        </defs>
+      </svg>''',
+                  ),
+                  isMobile?   CarouselSlider.builder(itemCount: service1Cards.length, itemBuilder: (context, index, realIndex) => service1Cards[index], options:  CarouselOptions(
+        height: dimensions.getHeight(420),
+        aspectRatio: 16/9,
+        viewportFraction: 0.8,
+        initialPage: 0,
+        enableInfiniteScroll: true,
+        reverse: false,
+        autoPlay: true,
+        autoPlayInterval: Duration(seconds: 3),
+        autoPlayAnimationDuration: Duration(milliseconds: 800),
+        autoPlayCurve: Curves.fastOutSlowIn,
+        enlargeCenterPage: true,
+        enlargeFactor: 0.3,
+        scrollDirection: Axis.horizontal,
+         )): Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: service1Cards,
                   )
                 ],
               ),

@@ -15,7 +15,7 @@ class Borderbutton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dimensions = Provider.of<Dimensions>(context);
+    final dimensions = Provider.of<Dimensions>(context,  listen: false);
     return TextButton(onPressed: action, child: CornerBorderContainer(
       borderColor: borderColor,
       child: Padding(

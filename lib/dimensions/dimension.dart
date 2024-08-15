@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:website/main.dart';
 
 class Dimensions with ChangeNotifier {
   double screenHeight;
@@ -7,10 +8,10 @@ class Dimensions with ChangeNotifier {
   Dimensions({required this.screenHeight, required this.screenWidth});
 
   double getHeight(double height) {
-    return (height / 938) * screenHeight;
+    return (height / (isMobile? 540 : 938)) * screenHeight;
   }
 
   double getWidth(double width) {
-    return (width / 1600) * screenWidth;
+    return (width / (isMobile? 400: 1600)) * screenWidth;
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:website/components/blogCard.dart';
 import 'package:website/dimensions/dimension.dart';
+import 'package:website/main.dart';
 
 const widgetArray = [
   Blogcard(
@@ -47,8 +48,10 @@ class Blogcontent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dimensions = Provider.of<Dimensions>(context);
-    return Row(
+    final dimensions = Provider.of<Dimensions>(context,  listen: false);
+    return isMobile? Column(
+      children: widgetArray,
+    ): Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

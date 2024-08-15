@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:website/components/borderButton.dart';
 import 'package:website/dimensions/dimension.dart';
+import 'package:website/main.dart';
 
 class Heading extends StatelessWidget {
   final String buttonText;
@@ -16,31 +17,32 @@ class Heading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dimensions = Provider.of<Dimensions>(context);
+    final dimensions = Provider.of<Dimensions>(context,  listen: false);
+    print("w ${dimensions.screenWidth}");
     return Container(
-      width: dimensions.getWidth(1195),
+      width: dimensions.screenWidth,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Borderbutton(height: dimensions.getHeight(50), width: dimensions.getWidth(250), action: buttonAction, backgroundColor: bgColor, borderColor: bgColor, text: buttonText, textColor: Color.fromRGBO(245 , 118, 0, 1)),
+          Borderbutton(height: dimensions.getHeight(50), width: dimensions.screenWidth, action: buttonAction, backgroundColor: bgColor, borderColor: bgColor, text: buttonText, textColor: Color.fromRGBO(245 , 118, 0, 1)),
           SizedBox(height: dimensions.getHeight(18),),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: dimensions.getWidth(180)),
+            padding: EdgeInsets.symmetric(horizontal: dimensions.getWidth(isMobile? 0 :180)),
             child: Text(headingText, style: TextStyle(
               fontFamily: "Supply",
-              fontSize: dimensions.getHeight(96),
+              fontSize: dimensions.getHeight(isMobile? 28:  96),
               color: headingColor
             ),
             textAlign: TextAlign.center,
             ),
           ),
           (bottomText != "") ? Container(
-            padding: EdgeInsets.symmetric(horizontal: dimensions.getWidth(200)),
+            padding: EdgeInsets.symmetric(horizontal: dimensions.getWidth(isMobile? 0 :  200)),
             child: Text(bottomText, style: GoogleFonts.inter(
                   textStyle: TextStyle(
                     color:  bottomTextColor
                   ),
-                    fontSize:  dimensions.getWidth(24),
+                    fontSize:  dimensions.getWidth(isMobile? 18: 24),
                     fontWeight: FontWeight.w400,
                 ),
                 textAlign: TextAlign.center,

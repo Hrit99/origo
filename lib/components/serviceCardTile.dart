@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:website/components/borderButton.dart';
 import 'package:website/dimensions/dimension.dart';
+import 'package:website/main.dart';
 
 class Servicecardtile extends StatefulWidget {
   final String svg;
@@ -28,7 +29,7 @@ class _ServicecardtileState extends State<Servicecardtile> {
 
   @override
   Widget build(BuildContext context) {
-    final dimensions = Provider.of<Dimensions>(context);
+    final dimensions = Provider.of<Dimensions>(context,  listen: false);
     return MouseRegion(
       onEnter: (_) {
         setState(() {
@@ -54,7 +55,7 @@ class _ServicecardtileState extends State<Servicecardtile> {
                       widget.heading,
                       style: TextStyle(
                         fontFamily: "Supply",
-                        fontSize: dimensions.getHeight(24),
+                        fontSize: dimensions.getHeight(isMobile? 16:  24),
                         fontWeight: FontWeight.w700,
                         color: Color.fromRGBO(11, 10, 10, 1),
                       ),
@@ -63,12 +64,12 @@ class _ServicecardtileState extends State<Servicecardtile> {
                     overflow: TextOverflow.visible,
                     ),
                     SizedBox(
-                      height: dimensions.getHeight(52),
+                      height: dimensions.getHeight( 52),
                     ),
                   SvgPicture.string(
                     widget.svg,
-                    width: dimensions.getWidth(58),
-                    height: dimensions.getHeight(58),
+                    width: dimensions.getWidth(isMobile? 32 : 58),
+                    height: dimensions.getHeight(isMobile? 32 : 58),
                   ),
                   SizedBox(height: dimensions.getHeight(18),),
                   ConstrainedBox(
@@ -107,7 +108,7 @@ class _ServicecardtileState extends State<Servicecardtile> {
                     overflow: TextOverflow.visible,
                     ),
                   ),
-                  Borderbutton(height: dimensions.getHeight(58), width: dimensions.getWidth(245), action: () => {}, backgroundColor: Color.fromRGBO(11, 10, 10, 1), borderColor: Color.fromRGBO(11, 10, 10, 1), text: "Explore All", textColor: Color.fromRGBO(250, 250, 250, 1))
+                  Borderbutton(height: dimensions.getHeight(isMobile? 58: 50), width: dimensions.getWidth(245), action: () => {}, backgroundColor: Color.fromRGBO(11, 10, 10, 1), borderColor: Color.fromRGBO(11, 10, 10, 1), text: "Explore All", textColor: Color.fromRGBO(250, 250, 250, 1))
                 ],
               ),
             ) :_isHovering

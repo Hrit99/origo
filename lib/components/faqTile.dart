@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:website/dimensions/dimension.dart';
+import 'package:website/main.dart';
 
 class Faqtile extends StatefulWidget {
   final String number;
@@ -21,7 +22,7 @@ class _FaqtileState extends State<Faqtile> {
   bool _isOpened = false;
   @override
   Widget build(BuildContext context) {
-    final dimensions = Provider.of<Dimensions>(context);
+    final dimensions = Provider.of<Dimensions>(context,  listen: false);
     return Container(
       decoration: _isOpened ? BoxDecoration(
                       color: Color.fromRGBO(245, 118, 0, 1),
@@ -56,7 +57,7 @@ class _FaqtileState extends State<Faqtile> {
         children: [
           Container(
             padding: EdgeInsets.symmetric(vertical: dimensions.getHeight(16)),
-            width: dimensions.getWidth(52),
+            width: dimensions.getWidth(isMobile? 40 : 52),
             child: Center(
               child: Text(
                 widget.number,
@@ -72,7 +73,7 @@ class _FaqtileState extends State<Faqtile> {
           ),
           _isOpened
               ? Container(
-                 width: dimensions.getWidth(1091),
+                 width: dimensions.getWidth(isMobile? 240 :1091),
                   padding: EdgeInsets.symmetric(
                       horizontal: dimensions.getWidth(10),
                       vertical: dimensions.getHeight(16)),
@@ -83,12 +84,12 @@ class _FaqtileState extends State<Faqtile> {
                     children: [
                       ConstrainedBox(
                         constraints:
-                            BoxConstraints(maxWidth: dimensions.getWidth(1091)),
+                            BoxConstraints(maxWidth: dimensions.getWidth(isMobile? 240 :1091)),
                         child: Text(
                           widget.question,
                           style: TextStyle(
                             fontFamily: "Supply",
-                            fontSize: dimensions.getHeight(24),
+                            fontSize: dimensions.getHeight(isMobile? 18 :24),
                             fontWeight: FontWeight.w400,
                             color: Color.fromRGBO(11, 10, 10, 1),
                           ),
@@ -99,7 +100,7 @@ class _FaqtileState extends State<Faqtile> {
                       ),
                       ConstrainedBox(
                         constraints:
-                            BoxConstraints(maxWidth: dimensions.getWidth(1091)),
+                            BoxConstraints(maxWidth: dimensions.getWidth(isMobile? 240 :1091)),
                         child: Text(
                           widget.answer,
                           style: GoogleFonts.inter(
@@ -120,15 +121,15 @@ class _FaqtileState extends State<Faqtile> {
                       horizontal: dimensions.getWidth(10),
                       vertical: dimensions.getHeight(16)),
                   alignment: Alignment.centerLeft,
-                  width: dimensions.getWidth(1091),
+                  width: dimensions.getWidth(isMobile? 240 :1091),
                   child: ConstrainedBox(
                     constraints:
-                        BoxConstraints(maxWidth: dimensions.getWidth(1091)),
+                        BoxConstraints(maxWidth: dimensions.getWidth(isMobile? 240 :1091)),
                     child: Text(
                       widget.question,
                       style: TextStyle(
                         fontFamily: "Supply",
-                        fontSize: dimensions.getHeight(24),
+                        fontSize: dimensions.getHeight(isMobile? 18 :24),
                         fontWeight: FontWeight.w400,
                         color: Color.fromRGBO(250, 250, 250, 1),
                       ),
@@ -138,7 +139,7 @@ class _FaqtileState extends State<Faqtile> {
                     ),
                   )),
           Container(
-            width: dimensions.getWidth(52),
+            width: dimensions.getWidth(isMobile? 35 : 52),
             padding: EdgeInsets.symmetric(vertical: dimensions.getHeight(16)),
             child: Center(
                 child: TextButton(
@@ -147,15 +148,17 @@ class _FaqtileState extends State<Faqtile> {
                   _isOpened = !_isOpened;
                 })
               },
-              child: Text(
-                "+",
-                style: TextStyle(
-                  fontFamily: "Supply",
-                  fontSize: dimensions.getHeight(24),
-                  fontWeight: FontWeight.w400,
-                  color: Color.fromRGBO(250, 250, 250, 1),
+              child: Center(
+                child: Text(
+                  _isOpened? "-" : "+",
+                  style: TextStyle(
+                    fontFamily: "Supply",
+                    fontSize: dimensions.getHeight(24),
+                    fontWeight: FontWeight.w400,
+                    color: Color.fromRGBO(250, 250, 250, 1),
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
               ),
             )),
           ),
